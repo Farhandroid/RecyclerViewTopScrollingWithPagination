@@ -64,8 +64,9 @@ class MainActivity : AppCompatActivity() {
             for (i in dataSet.size - 1..currentPage * recordPerPage) {
                 dataSet.add(0, "chat message $i")
             }
-
+            //Just slowing for one second so that progressbar can be visible
             Handler(Looper.getMainLooper()).postDelayed({
+                //We are using recyclerView.post because recyclerview can not updated while scrolling
                 dataBinding.recyclerView.post {
                     recyclerAdapter.setData(ArrayList(dataSet.subList(0, recordPerPage)))
                 }
